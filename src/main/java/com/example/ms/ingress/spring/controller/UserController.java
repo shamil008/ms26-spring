@@ -16,3 +16,11 @@ public class UserController {
         userService.test();
     }
 }
+
+// v1/bookings/{id} -GET
+// v1/bookings - GET
+// v1/bookings/{id} -DELETE
+// v1/bookings/{id} -PUT
+// v1/bookings -POST
+// v1/lombard-credits/{id}?creditAmount=1000
+// v1/competitions/{competition_id}/teams/{team_id}
