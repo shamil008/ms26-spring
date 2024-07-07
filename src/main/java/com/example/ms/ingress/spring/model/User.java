@@ -13,7 +13,6 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @FieldDefaults(level = PRIVATE)
 public class User {
-     Long id;
+     Long age;
      String name;
-     String surname;
 }
