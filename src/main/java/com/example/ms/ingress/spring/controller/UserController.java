@@ -1,20 +1,45 @@
 package com.example.ms.ingress.spring.controller;
 
 
+import com.example.ms.ingress.spring.model.User;
 import com.example.ms.ingress.spring.service.UserService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
+
+import static org.springframework.http.HttpStatus.CREATED;
 
 
-
+@RestController
+@RequestMapping("v1/user/")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    private void test(){
-        userService.test();
+
+    @PostMapping
+    @ResponseStatus(CREATED)
+    public void createUser(@RequestBody User user){
+        UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString();
+        System.out.println("id -> "+uuidAsString);
+        userService.createUser(uuidAsString,user);
     }
+    @PutMapping("/{id}")
+    public void updateUser(@PathVariable String id,@RequestBody User user){
+        userService.updateUser(id,user);
+    }
+
+    @GetMapping("/{id}")
+    public String getUser(@PathVariable String id, @RequestParam Long fromAge,@RequestParam Long toAge){
+       return userService.getUser(id,fromAge,toAge);
+    }
+
+
+
+
 }
 
 // v1/bookings/{id} -GET
